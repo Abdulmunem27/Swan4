@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>4:44</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body { cursor: none; }
+
+    #cursor-swan {
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      font-size: 1.8rem;
+    }
+
+    .snap-container {
+      scroll-snap-type: x mandatory;
+      display: flex;
+      overflow-x: scroll;
+      height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    .snap-section {
+      scroll-snap-align: start;
+      flex: 0 0 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .snap-container::-webkit-scrollbar { display: none; }
+
+    .grid-card {
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grid-card:hover {
+      flex-grow: 2;
+      background-color: #fff5f5;
+    }
+
+    .surprise-card:hover h2,
+    .surprise-card:hover p {
+      color: #fb7185;
+    }
+
+    /* Flip cards */
+    .flip-card { background-color: transparent; width: 250px; height: 350px; perspective: 1000px; }
+    .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d; }
+    .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .flip-card-front { background: white; border: 2px solid #f3f4f6; }
+    .flip-card-back { background: #1e293b; color: white; transform: rotateY(180deg); text-align: center; }
+
+    .swan-btn { transition: all 0.3s; filter: grayscale(1); }
+    .swan-btn.active { filter: grayscale(0); transform: scale(1.15); }
+  </style>
+</head>
+
+<body class="overflow-hidden">
+
+<div id="cursor-swan">🦢</div>
+
+
+<div class="snap-container" id="slider">
+
+  <!-- SLIDE 1 (color only changed) -->
+  <section class="snap-section bg-[#faf7f2] text-[#2b2b2b]">
+    <h1 class="text-[12vw] font-black opacity-10 absolute select-none">FOUR</h1>
+    <div class="text-center z-10">
+      <p class="text-xl mb-2">To the girl who loves</p>
+      <h2 class="text-7xl font-serif italic">Number Four</h2>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 (color only changed) -->
+  <section class="snap-section bg-[#eef4fa] text-[#1f2937]">
+    <h1 class="text-[12vw] font-black opacity-10 absolute select-none">SWAN</h1>
+    <div class="max-w-xl text-center z-10">
+      <h2 class="text-4xl font-bold mb-6">Elegant & Strong</h2>
+      <p class="text-lg opacity-80">
+        I chose the swan to represent you today because they symbolize grace and beauty —
+        exactly how I see our friendship.
+      </p>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 (FLIP CARDS) -->
+  <section class="snap-section bg-slate-50">
+    <div class="flex flex-col items-center gap-12">
+      <h1 class="text-4xl font-light text-slate-800">
+        Four Reasons You Are <span class="text-purple-500 font-bold">Unstoppable</span> 🦢
+      </h1>
+
+      <div class="flex gap-8">
+        <div class="flip-card"><div class="flip-card-inner">
+          <div class="flip-card-front text-5xl">🦢<span class="text-sm mt-4 text-slate-400 font-bold">Number 1</span></div>
+          <div class="flip-card-back">You are always listening to me yapping about bunch of nonsense without complaining, and I really appreciate that because no one can stand me</div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card-inner">
+          <div class="flip-card-front text-5xl">🦢<span class="text-sm mt-4 text-slate-400 font-bold">Number 2</span></div>
+          <div class="flip-card-back">You care too much, that's not a weakness, that's the thing that reminds me of you whenever I think about you</div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card-inner">
+          <div class="flip-card-front text-5xl">🦢<span class="text-sm mt-4 text-slate-400 font-bold">Number 3</span></div>
+          <div class="flip-card-back">You got through every struggle and moved on, I hope you forgive me for the things I did that made you mad at me..</div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card-inner">
+          <div class="flip-card-front text-5xl">🦢<span class="text-sm mt-4 text-slate-400 font-bold">Memory 04</span></div>
+          <div class="flip-card-back">Well, the fourth reason of why are you unstoppable is of course because you have<span class="text-4xl text-purple-600 m-4 font-bold">me</span>come on what did you think I'd write here instead of this?</div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 -->
+  <section class="snap-section bg-stone-100">
+    <div class="w-full h-full p-10 flex flex-col gap-6">
+
+      <div class="flex flex-1 gap-4">
+        <div class="grid-card bg-white rounded-3xl p-8 flex-1 shadow-sm">
+          <h3 class="text-xl font-bold mb-4">4 Reasons You're Evil</h3>
+          <ul class="text-stone-600 space-y-1">
+            <li>• ام سحورة</li><li>• جذابة</li><li>• شكلج مال كوثك</li><li>• وانو يعنني🌚</li>
+          </ul>
+        </div>
+
+        <div class="grid-card bg-white rounded-3xl p-8 flex-1 flex items-center justify-center">
+          <p class="text-8xl font-serif text-center">
+            🐍
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-1 gap-4">
+        <div class="grid-card bg-rose-50 rounded-3xl p-8 flex-1 flex items-center justify-center">
+          <p class="text-4xl font-serif text-center">
+            Cutest Snake I Have Ever seen 🦢
+          </p>
+        </div>
+
+        <div onclick="openSurprise()" class="grid-card surprise-card bg-stone-800 rounded-3xl p-8 flex-1 text-white flex items-center justify-center">
+          <div class="text-center">
+            <h2 class="text-3xl font-bold">Happy Birthday GHADEER!</h2>
+            <p class="opacity-70 mt-2">Click for the surprise</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- SURPRISE MODAL -->
+<div id="surprise" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+  <div class="bg-white p-10 rounded-3xl shadow-2xl text-center max-w-md w-full relative">
+    <button onclick="closeSurprise()" class="absolute top-4 right-4 text-xl opacity-60">✕</button>
+
+    <h1 id="unlock-title" class="text-2xl mb-8">Tap the 4 Swans to Unlock The Gift</h1>
+
+    <div id="swan-row" class="flex justify-between mb-10">
+      <button onclick="reveal(this)" class="swan-btn text-5xl">🦢</button>
+      <button onclick="reveal(this)" class="swan-btn text-5xl">🦢</button>
+      <button onclick="reveal(this)" class="swan-btn text-5xl">🦢</button>
+      <button onclick="reveal(this)" class="swan-btn text-5xl">🦢</button>
+    </div>
+
+    <div id="message-box" class="hidden">
+      <h2 class="text-3xl font-bold text-rose-500 mb-4">HAPPY BIRTHDAY GEGE!</h2>
+      <p class="text-stone-600">انووووووو يعنننننييييييييييييييييي
+        كل عام وانت بألف مليون مليار خير، يارب إن شاء الله ايامج كلها فرح وسعادة وتفوق ونجاح وكلشي حلو واتمنى بعد ماضوجج او تزعلين مني وحتى لو تزعلين الله عليج تذكري الشغلات الحلوة بية لأن والله اني حباب وكيوت وهيج، وهذني اللي فوك اكيد شقة لتصدكين بيهن، بس مال سحر ما متأكد، صح مرات اصير مدري شلونني بس سامحيني وان شاء الله اتحسن. يارب سنة خير عليج وتحققين جزء جبير من احلامج🙏❤️‍🔥
+      </p>
+      <p class="text-stone-600 mt-4">Thank you for believing in me..</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cursor = document.getElementById("cursor-swan");
+  document.addEventListener("mousemove", e => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") slider.scrollLeft += window.innerWidth;
+    if (e.key === "ArrowLeft") slider.scrollLeft -= window.innerWidth;
+  });
+
+  let count = 0;
+  function openSurprise() {
+    document.getElementById("surprise").classList.remove("hidden");
+    document.getElementById("surprise").classList.add("flex");
+  }
+
+  function closeSurprise() {
+    document.getElementById("surprise").classList.add("hidden");
+    document.getElementById("surprise").classList.remove("flex");
+  }
+
+  function reveal(el) {
+    if (!el.classList.contains("active")) {
+      el.classList.add("active");
+      count++;
+      if (count === 4) {
+        document.getElementById("swan-row").classList.add("hidden");
+        document.getElementById("unlock-title").classList.add("hidden");
+        document.getElementById("message-box").classList.remove("hidden");
+        confetti({ particleCount: 200, spread: 90 });
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
